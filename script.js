@@ -6,7 +6,7 @@
 // ⚠️ CONFIGURACIÓN LOCAL - CAMBIA SEGÚN TU PUERTO
 // ============================================
 // Si tu servidor corre en el puerto 3000:
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'https://cd-clement510e-github-io.onrender.com';
 
 // Si tu servidor corre en otro puerto, cámbialo:
 // const SERVER_URL = 'http://localhost:8080';
