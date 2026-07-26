@@ -1,0 +1,2 @@
+NumeroEncuesta,Timestamp_Captura,Timestamp_Envio,Timestamp_Display,Latitud,Longitud,Direccion,Precision,UserAgent,IP
+1,2026-07-26T01:40:38.014Z,2026-07-26T01:41:02.769Z,"25/07/2026, 19:41:02",19.3982302236151,-99.06940427267321,"Calle Oriente 245 A, Colonia Agrícola Oriental, Ciudad de México, Iztacalco, Ciudad de México, 08500, México",129,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",::1
