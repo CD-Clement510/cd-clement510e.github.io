@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta con Geolocalización</title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📍 Encuesta de Validación</h1>
+            <p class="subtitle">Para acceder a la encuesta, primero debes confirmar tu ubicación</p>
+        </header>
+
+        <main>
+            <!-- ========================================== -->
+            <!-- PASO 1: SOLICITUD DE UBICACIÓN            -->
+            <!-- ========================================== -->
+            <div id="pasoUbicacion">
+                <div class="ubicacion-box">
+                    <div class="icono-ubicacion">📍</div>
+                    <h2>Confirma tu ubicación</h2>
+                    <p>Necesitamos acceder a tu ubicación para validar que eres un usuario real.</p>
+                    <p class="detalle-ubicacion">Tu ubicación solo se usa para verificar tu respuesta y no se comparte con terceros.</p>
+                    
+                    <button id="btnConfirmarUbicacion" class="btn-primary btn-grande">
+                        <span id="btnUbicacionTexto">📍 Confirmar Ubicación</span>
+                        <span id="btnUbicacionSpinner" class="spinner" style="display: none;">⏳</span>
+                    </button>
+                    
+                    <div id="estadoUbicacion" class="estado-ubicacion" style="display: none;"></div>
+                    
+                    <!-- Información de ubicación capturada -->
+                    <div id="infoUbicacion" class="info-ubicacion" style="display: none;">
+                        <div class="badge-ubicacion">✅ Ubicación confirmada</div>
+                        <div class="coordenadas">
+                            <span>Latitud: <strong id="mostrarLatitud">-</strong></span>
+                            <span>Longitud: <strong id="mostrarLongitud">-</strong></span>
+                        </div>
+                        <div class="direccion">
+                            📌 <span id="mostrarDireccion">-</span>
+                        </div>
+                        <div class="precision">
+                            Precisión: <span id="mostrarPrecision">-</span> metros
+                        </div>
+                        <div class="tiempo-captura">
+                            ⏱️ Capturado: <span id="mostrarTiempo">-</span>
+                        </div>
+                        <button id="btnRecargarUbicacion" class="btn-small">🔄 Reconfirmar ubicación</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- PASO 2: ENCUESTA DE GOOGLE (oculta inicialmente) -->
+            <!-- ========================================== -->
+            <div id="pasoEncuesta" style="display: none;">
+                <div class="encuesta-wrapper">
+                    <div class="encuesta-header">
+                        <h2>📋 Completa la encuesta</h2>
+                        <p>Tu ubicación ha sido confirmada. Ahora puedes responder la encuesta.</p>
+                        <div class="contador-box">
+                            <span id="textoContador">📊 Cargando estado de la encuesta...</span>
+                        </div>
+                        <div class="tiempo-confirmacion">
+                            ✅ Ubicación confirmada: <span id="mostrarTiempoConfirmacion">-</span>
+                        </div>
+                    </div>
+                    
+                    <!-- ========================================== -->
+                    <!-- ⚠️ AQUÍ VA TU ENCUESTA DE GOOGLE          -->
+                    <!-- Reemplaza el src con tu URL de Google Forms -->
+                    <!-- ========================================== -->
+                    <div class="encuesta-iframe-container">
+                        <iframe 
+                            id="googleForm"
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfJ7f2BR7GxbSFA8i7y8lE4SZDWMZsXVDcuUfNYcUG8lBLb5g/viewform?embedded=true" 
+                            width="100%" 
+                            height="1993" 
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                            Cargando encuesta...
+                        </iframe>
+                    </div>
+                    
+                    <!-- Botón para enviar la ubicación junto con la encuesta -->
+                    <div class="envio-ubicacion-box">
+                        <p class="info-envio">⚠️ Al hacer clic en "Enviar", se registrará tu ubicación, fecha, hora y número de encuesta.</p>
+                        <button id="btnEnviarUbicacion" class="btn-primary">
+                            📤 Enviar ubicación con encuesta
+                        </button>
+                        <div id="statusEnvio" class="status-message" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- PIE DE PÁGINA                              -->
+            <!-- ========================================== -->
+            <div class="privacy-info">
+                <p>🔒 <strong>Privacidad:</strong> Tu ubicación solo se usa para validar autenticidad.</p>
+                <p>📊 <strong>Registro:</strong> Cada envío guarda número de encuesta, coordenadas, timestamp y tiempo de confirmación.</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 - Encuesta con Geolocalización</p>
+        </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CONFIGURACIÓN DEL SERVIDOR                -->
+    <!-- ========================================== -->
+    <script>
+        // 🔴 CAMBIA ESTA URL POR LA DE TU SERVIDOR
+        // Si ejecutas localmente: http://localhost:3000
+        // Si está en producción: https://tudominio.com
+        const CONFIG = {
+            SERVER_URL: 'http://localhost:3000',
+        };
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

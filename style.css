@@ -1,0 +1,431 @@
+/* ============================================
+   ESTILOS PRINCIPALES
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* TARJETA PRINCIPAL */
+main {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #2d3748;
+    margin-bottom: 10px;
+}
+
+header .subtitle {
+    color: #718096;
+    font-size: 16px;
+}
+
+/* ========================================== */
+/* PASO 1: SOLICITUD DE UBICACIÓN            */
+/* ========================================== */
+
+.ubicacion-box {
+    text-align: center;
+    padding: 30px 20px;
+    background: #f7fafc;
+    border-radius: 12px;
+    border: 2px dashed #cbd5e0;
+}
+
+.icono-ubicacion {
+    font-size: 64px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.ubicacion-box h2 {
+    color: #2d3748;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.ubicacion-box p {
+    color: #4a5568;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.detalle-ubicacion {
+    font-size: 14px;
+    color: #718096;
+    background: #edf2f7;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.btn-grande {
+    padding: 16px 40px;
+    font-size: 18px;
+    width: auto;
+    min-width: 250px;
+    margin: 10px auto;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 30px;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(56, 161, 105, 0.4);
+}
+
+.btn-primary:disabled {
+    background: #a0aec0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-small {
+    background: #edf2f7;
+    color: #2d3748;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.btn-small:hover {
+    background: #e2e8f0;
+}
+
+.spinner {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estado de ubicación */
+.estado-ubicacion {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.estado-ubicacion.exito {
+    background: #c6f6d5;
+    color: #276749;
+    border: 1px solid #9ae6b4;
+}
+
+.estado-ubicacion.error {
+    background: #fed7d7;
+    color: #9b2c2c;
+    border: 1px solid #feb2b2;
+}
+
+.estado-ubicacion.cargando {
+    background: #bee3f8;
+    color: #2a69ac;
+    border: 1px solid #90cdf4;
+}
+
+/* Información de ubicación capturada */
+.info-ubicacion {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #48bb78;
+    text-align: left;
+}
+
+.badge-ubicacion {
+    background: #48bb78;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.coordenadas {
+    display: flex;
+    gap: 20px;
+    margin: 8px 0;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.coordenadas strong {
+    color: #2d3748;
+}
+
+.direccion {
+    margin: 8px 0;
+    padding: 10px;
+    background: #f7fafc;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #4a5568;
+    word-break: break-word;
+}
+
+.precision {
+    font-size: 13px;
+    color: #718096;
+    margin-top: 8px;
+}
+
+.tiempo-captura {
+    font-size: 13px;
+    color: #718096;
+    margin-top: 5px;
+    padding: 5px 10px;
+    background: #f7fafc;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* ========================================== */
+/* PASO 2: ENCUESTA DE GOOGLE                */
+/* ========================================== */
+
+.encuesta-wrapper {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.encuesta-header {
+    margin-bottom: 20px;
+}
+
+.encuesta-header h2 {
+    color: #2d3748;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.encuesta-header p {
+    color: #718096;
+    font-size: 15px;
+}
+
+.contador-box {
+    background: #f7fafc;
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin: 15px 0;
+    border-left: 4px solid #4299e1;
+    font-weight: 500;
+    color: #2d3748;
+    font-size: 15px;
+}
+
+.tiempo-confirmacion {
+    background: #f0fff4;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin: 10px 0 15px 0;
+    border-left: 4px solid #48bb78;
+    font-size: 14px;
+    color: #276749;
+}
+
+.encuesta-iframe-container {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.encuesta-iframe-container iframe {
+    display: block;
+    min-height: 500px;
+    height: auto;
+}
+
+/* ========================================== */
+/* ENVÍO DE UBICACIÓN                        */
+/* ========================================== */
+
+.envio-ubicacion-box {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f7fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.info-envio {
+    font-size: 14px;
+    color: #718096;
+    margin-bottom: 15px;
+}
+
+.status-message {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    display: none;
+}
+
+.status-message.success {
+    display: block;
+    background: #c6f6d5;
+    color: #276749;
+    border: 1px solid #9ae6b4;
+}
+
+.status-message.error {
+    display: block;
+    background: #fed7d7;
+    color: #9b2c2c;
+    border: 1px solid #feb2b2;
+}
+
+.status-message.loading {
+    display: block;
+    background: #bee3f8;
+    color: #2a69ac;
+    border: 1px solid #90cdf4;
+}
+
+/* ========================================== */
+/* PIE DE PÁGINA Y PRIVACIDAD                */
+/* ========================================== */
+
+.privacy-info {
+    margin-top: 25px;
+    padding: 15px 20px;
+    background: #f7fafc;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #4a5568;
+    border: 1px solid #e2e8f0;
+}
+
+.privacy-info p {
+    margin-bottom: 5px;
+}
+
+.privacy-info p:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-info strong {
+    color: #2d3748;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+}
+
+/* ========================================== */
+/* RESPONSIVE                                 */
+/* ========================================== */
+
+@media (max-width: 600px) {
+    main {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .ubicacion-box {
+        padding: 20px 15px;
+    }
+
+    .icono-ubicacion {
+        font-size: 48px;
+    }
+
+    .btn-grande {
+        padding: 14px 25px;
+        font-size: 16px;
+        min-width: 200px;
+        width: 100%;
+    }
+
+    .coordenadas {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .encuesta-iframe-container iframe {
+        height: 800px !important;
+    }
+
+    .envio-ubicacion-box {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .encuesta-iframe-container iframe {
+        height: 1000px !important;
+    }
+}
