@@ -1,16 +1,16 @@
 /* ============================================
-   SCRIPT PRINCIPAL - VERSIÓN LOCAL
+   SCRIPT PRINCIPAL - VERSIÓN PRODUCCIÓN
+   CORREGIDO PARA FUNCIONAR CON RENDER
    ============================================ */
 
 // ============================================
-// ⚠️ CONFIGURACIÓN LOCAL - CAMBIA SEGÚN TU PUERTO
+// ✅ CONFIGURACIÓN CORRECTA - APUNTA A RENDER
 // ============================================
-// Si tu servidor corre en el puerto 3000:
-const SERVER_URL = 'https://cd-clement510.github.io/cd-clement510e.github.io/';
+// Esta es la URL de tu servidor en Render (NO GitHub Pages)
+const SERVER_URL = 'https://cd-clement510e-github-io.onrender.com';
 
-// Si tu servidor corre en otro puerto, cámbialo:
-// const SERVER_URL = 'http://localhost:8080';
-// const SERVER_URL = 'http://localhost:5000';
+// Si quieres probar localmente, cambia a:
+// const SERVER_URL = 'http://localhost:3000';
 
 // ============================================
 // ELEMENTOS DEL DOM
@@ -309,11 +309,7 @@ async function enviarUbicacion() {
         mostrarEstadoEnvio(
             `❌ Error de conexión.\n` +
             `Servidor: ${SERVER_URL}\n` +
-            `Error: ${error.message}\n\n` +
-            `💡 Asegúrate de que el servidor esté corriendo:\n` +
-            `1. Abre una terminal\n` +
-            `2. Ve a la carpeta "server"\n` +
-            `3. Ejecuta: npm start`,
+            `Error: ${error.message}`,
             'error'
         );
     } finally {
@@ -353,23 +349,23 @@ btnEnviarUbicacion.addEventListener('click', enviarUbicacion);
 // 7. INICIALIZACIÓN
 // ============================================
 window.onload = async function() {
-    console.log('🚀 Iniciando encuesta en LOCAL');
+    console.log('🚀 Iniciando encuesta');
     console.log(`📡 Servidor: ${SERVER_URL}`);
     
     // Verificar conexión con el servidor
     try {
         const response = await fetch(`${SERVER_URL}/api/estado`);
         if (response.ok) {
+            const data = await response.json();
             console.log('✅ Conexión con el servidor establecida');
+            console.log(`📊 Total de encuestas: ${data.total || 0}`);
         } else {
             console.warn('⚠️ El servidor respondió con error:', response.status);
         }
     } catch (error) {
         console.error('❌ No se pudo conectar al servidor');
-        console.log('💡 Asegúrate de que el servidor esté corriendo:');
-        console.log('   1. Abre una terminal');
-        console.log('   2. cd server');
-        console.log('   3. npm start');
+        console.log('💡 Verifica que el servidor en Render esté activo:');
+        console.log(`   ${SERVER_URL}`);
     }
     
     mostrarEstadoUbicacion('📍 Solicitando acceso a tu ubicación...', 'cargando');
